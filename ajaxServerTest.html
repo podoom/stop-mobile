@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Teste de Servidor Ajax</title>
+	<link rel="stylesheet" href="css/layout/estilo.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		$(function()
+		{
+			ajaxServer();
+		});
+
+		function ajaxServer()
+		{
+			$.ajax({url: "test.json",context: document.body})
+			.done(function(data){callback(data); ajaxServer();})
+			.error(function(){ajaxServer();});
+		}
+
+		function callback(data)
+		{
+			$("span").text(data);
+		}
+	</script>
+	<span></span>
+</head>
